@@ -7,6 +7,7 @@ package com.sergioarboleda.c4r2.controller;
 import com.sergioarboleda.c4r2.entity.User;
 import com.sergioarboleda.c4r2.service.UserService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -36,26 +38,26 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable Integer id) {
-        return userService.getById(id);
+    public Optional<User> getById(@PathVariable Integer id) {
+        return userService.getUser(id);
     }
 
     @PostMapping("/new")
-    public ResponseEntity<User> save(@RequestBody User user) {
-        User p = userService.save(user);
-        return new ResponseEntity(p, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public User save(@RequestBody User user) {
+        return userService.save(user);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<User> update(@RequestBody User user) {
-        User p = userService.update(user);
-        return new ResponseEntity(p, HttpStatus.OK);
+    @ResponseStatus(HttpStatus.CREATED)
+    public User update(@RequestBody User user) {
+        return userService.update(user);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id) {
-        userService.delete(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id) {
+        userService.deleteUser(id);
     }
     
     //Customs

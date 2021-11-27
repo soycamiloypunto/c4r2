@@ -25,8 +25,8 @@ public class UserService {
         return userRepository.getAll();
     }
     
-    public User getById(Integer id) {
-        return userRepository.getById(id).orElse(null);
+    public Optional<User> getUser(Integer id) {
+        return userRepository.getById(id);
     }
     
     public User save(User user){
@@ -87,9 +87,15 @@ public class UserService {
         }
     }
     
-    public void delete(Integer id) {
-        userRepository.delete(id);
+    public boolean deleteUser(int id){
+        Boolean aBoolean=getUser(id).map(user -> {
+            userRepository.delete(id);
+            return true;
+        }).orElse(aBoolean=false);
+        
+        return aBoolean;
     }
+    
     
     //CUSTOMS
     public Boolean getByEmail(String email){

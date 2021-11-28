@@ -43,7 +43,7 @@ public class UserService {
     }
     
     public User update(User user){
-        if(user.getId()!=null){
+        if(user.getId()==null){
             return userRepository.save(user);
         }else{
             Optional<User> e=userRepository.getById(user.getId());
@@ -79,7 +79,7 @@ public class UserService {
                     e.get().setType(user.getType());
                 }
                 
-                
+                userRepository.save(e.get());
                 return e.get();
             }else{
                 return user;

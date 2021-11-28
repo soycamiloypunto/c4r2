@@ -42,6 +42,7 @@ public class ClotheService {
     }
     
     public Clothe update(Clothe clothe){
+        
         if(clothe.getReference()==null){
             return clotheRepository.save(clothe);
         }else{
@@ -60,7 +61,7 @@ public class ClotheService {
                 if(clothe.getPhotography()!=null){
                     e.get().setPhotography(clothe.getPhotography());
                 }
-                
+                clotheRepository.save(e.get());
                 return e.get();
             }else{
                 return clothe;

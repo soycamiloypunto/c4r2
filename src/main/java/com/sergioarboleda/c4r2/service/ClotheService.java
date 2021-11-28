@@ -42,7 +42,7 @@ public class ClotheService {
     }
     
     public Clothe update(Clothe clothe){
-        if(clothe.getReference()!=null){
+        if(clothe.getReference()==null){
             return clotheRepository.save(clothe);
         }else{
             Optional<Clothe> e=clotheRepository.getClothe(clothe.getReference());

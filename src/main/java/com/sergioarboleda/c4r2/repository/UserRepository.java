@@ -4,7 +4,7 @@
  */
 package com.sergioarboleda.c4r2.repository;
 
-import com.sergioarboleda.c4r2.crud.UserCrudRepository;
+import com.sergioarboleda.c4r2.repository.crud.UserCrudRepository;
 import com.sergioarboleda.c4r2.entity.User;
 import java.util.List;
 import java.util.Optional;

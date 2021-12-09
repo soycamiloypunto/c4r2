@@ -1,6 +1,6 @@
 package com.sergioarboleda.c4r2.repository;
 
-import com.sergioarboleda.c4r2.crud.ClotheCrudRepository;
+import com.sergioarboleda.c4r2.repository.crud.ClotheCrudRepository;
 import com.sergioarboleda.c4r2.entity.Clothe;
 import java.util.List;
 import java.util.Optional;

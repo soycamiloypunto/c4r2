@@ -451,6 +451,7 @@ function consultarInventario() {
 function mostrarTablaInventario(response) {
     let rows = '<tr>';
     for (i = 0; i < response.length; i++) {
+        console.log("Reference = "+response[i].reference)
         rows += '<th scope="row">' + response[i].reference + '</th>';
         rows += '<td>' + response[i].category + '</td>';
         rows += '<td>' + response[i].size + '</td>';
@@ -458,8 +459,8 @@ function mostrarTablaInventario(response) {
         rows += '<td>' + response[i].availability + '</td>';
         rows += '<td>' + response[i].price + '</td>';
         rows += '<td>' + response[i].quantity + '</td>';
-        rows += '<td>' + response[i].photography + '</td>';
-        rows += '<td> <button class="btn btn-primary fa fa-pencil" onclick="buscarPorIDInventario(' + response[i].reference + ')"></button><button style="margin-left:10px"class="btn btn-danger fa fa-trash" onclick="eliminarInventario(' + response[i].reference + ')"></button></td>';
+        rows += '<td><img src=\''+response[i].photography+'\' width="50" height="50"></td>';
+        rows += '<td> <button class="btn btn-primary fa fa-pencil" onclick="buscarPorIDInventario(\'' + response[i].reference + '\')"></button><button style="margin-left:10px"class="btn btn-danger fa fa-trash" onclick="eliminarInventario(\''+response[i].reference+'\')"></button></td>';
         rows += '</tr>';
     }
 
@@ -495,9 +496,9 @@ $("#editarInventario").click(function() {
     });
 });
 
-function buscarPorIDInventario(idItem) {
+function buscarPorIDInventario(referenceItem) {
     $.ajax({
-        url: "http://localhost:8080/api/clothe/" + idItem,
+        url: "http://localhost:8080/api/clothe/" + referenceItem,
         type: "GET",
         datatype: "JSON",
         success: function (response) {
@@ -515,16 +516,11 @@ function buscarPorIDInventario(idItem) {
     });
 }
 
-function eliminarInventario(idElemento) {
-    let elemento = {
-      id: idElemento,
-    }
-    let datoEnvio = JSON.stringify(elemento);
-    console.log(datoEnvio);
+function eliminarInventario(referenceItem) {
+    console.log("Referencia a Borrar: "+referenceItem);
     $.ajax({
-      url: "http://localhost:8080/api/clothe/" + idElemento,
+      url: "http://localhost:8080/api/clothe/" + referenceItem,
       type: "DELETE",
-      data: datoEnvio,
       datatype: "json",
       contentType: 'application/json',
       success: function (respuesta) {

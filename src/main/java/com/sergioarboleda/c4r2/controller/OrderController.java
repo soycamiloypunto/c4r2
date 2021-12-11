@@ -51,18 +51,23 @@ public class OrderController {
     }
 
     //CUSTOMS
-    @GetMapping("/zona/{zone}")
-    public List<Order> getOrdersByZone(@PathVariable("zone") String zone){
-        return orderService.getOrdersByZone(zone);
+    @GetMapping("/zona/{zona}")
+    public List<Order> findByZone(@PathVariable("zona") String zona) {
+        return orderService.findByZone(zona);
     }
 
-    @GetMapping("/status/{status}")
-    public List<Order> getOrdersByStatus(@PathVariable("status") String status){
-        return orderService.getOrdersByStatus(status);
+    @GetMapping("/salesman/{id}")
+    public List<Order> findBySalesMan(@PathVariable("id")int idSales){
+        return orderService.findBySalesMan(idSales);
     }
 
-    @GetMapping("/quantity/{quantity}")
-    public List<Order> getOrdersByQuantity(@PathVariable("quantity") String quantity){
-        return orderService.getOrdersByQuantities(quantity);
+    @GetMapping("/state/{status}/{id}")
+    public List<Order> findByStatus(@PathVariable("status")String status, @PathVariable("id")int idSales){
+        return orderService.findByStatus(status,idSales);
+    }
+
+    @GetMapping("/date/{registerDay}/{id}")
+    public List<Order> findByRegisterDay(@PathVariable("registerDay")String registerDay,@PathVariable("id")int idSales){
+        return  orderService.findByRegisterDay(registerDay,idSales);
     }
 }

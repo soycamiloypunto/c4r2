@@ -8,6 +8,10 @@ import com.sergioarboleda.c4r2.entity.Order;
 import com.sergioarboleda.c4r2.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,17 +86,30 @@ public class OrderService {
         return aBoolean;
     }
 
-    public List<Order> getOrdersByZone(String zone){
-        return orderRepository.getOrderByZone(zone);
-    }
-
-    public List<Order> getOrdersByStatus(String status){
-        return orderRepository.getOrderByZone(status);
-    }
-
-    public List<Order> getOrdersByQuantities(String quantities){
-        return orderRepository.getOrderByZone(quantities);
-    }
-    
     //CUSTOMS
+
+    //Ordenes de pedido asociadas a los asesores de una zona
+    public List<Order> findByZone(String zona) {
+        return orderRepository.findByZone(zona);
+    }
+
+    public List<Order> findByStatus(String status, int idSales){
+        return orderRepository.findByStatus(status,idSales);
+    }
+
+    public List<Order> findBySalesMan(int idSales){
+        return orderRepository.findBySalesMan(idSales);
+    }
+
+    public List<Order> findByRegisterDay(String date, int idSales){
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateFormat = new Date();
+        try{
+            dateFormat= formato.parse(date);
+
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return orderRepository.findByRegisterDate(dateFormat, idSales);
+    }
 }

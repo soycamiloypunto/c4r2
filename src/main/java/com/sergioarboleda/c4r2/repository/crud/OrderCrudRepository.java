@@ -9,6 +9,7 @@ import com.sergioarboleda.c4r2.entity.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,10 +18,24 @@ import java.util.List;
  */
 public interface OrderCrudRepository extends MongoRepository<Order, Integer> {
 
-    @Query("{'salesMan.zone':?0}")
-    public List<Order> findByZone(String country);
+//    @Query("{'salesMan.zone':?0}")
+//    public List<Order> findByZone(String country);
+//
+//    public List<Order> findByStatus(String status);
+//
+//    public List<Order> findByQuantities(String quantities);
+//
+//    public List<Order> findByQuantitiesAndSalesMan(String quantities);
 
-    public List<Order> findByStatus(String status);
+    @Query("{'salesMan.zone': ?0}")
+    List<Order> findByZone(final String zone);
 
-    public List<Order> findByQuantities(String quantities);
+    @Query("{status: ?0, 'salesMan.id': ?1}")
+    List<Order> findByStatus(final String status, Integer id);
+
+    @Query("{'salesMan.id': ?0}")
+    List<Order> findBySalesMan(final Integer id);
+
+    @Query("{registerDay: ?0, 'salesMan.id': ?1}")
+    List<Order> findByRegisterDay(final Date registerDay, Integer id);
 }

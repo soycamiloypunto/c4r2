@@ -5,6 +5,7 @@ import com.sergioarboleda.c4r2.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,17 +39,21 @@ public class OrderRepository {
         orderCrudRepository.deleteById(id);
     }
 
-    public List<Order> getOrderByZone(String zona){
+    //CUSTOMS
+   public List<Order> findByZone(String zona) {
         return orderCrudRepository.findByZone(zona);
     }
 
-    public List<Order> getOrderByStatus(String status){
-        return orderCrudRepository.findByStatus(status);
+    public List<Order> findByStatus(String status, int idSales){
+        return orderCrudRepository.findByStatus(status,idSales);
     }
 
-    public List<Order> getOrderByQuantities(String quantities){
-        return orderCrudRepository.findByStatus(quantities);
+    public List<Order> findByRegisterDate(Date date, int idSales){
+        return orderCrudRepository.findByRegisterDay(date,idSales);
     }
 
+    public List<Order> findBySalesMan(int idSales){
+        return orderCrudRepository.findBySalesMan(idSales);
+    }
 
 }

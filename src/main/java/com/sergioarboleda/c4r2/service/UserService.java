@@ -54,12 +54,12 @@ public class UserService {
                 if(user.getName()!=null){
                     e.get().setName(user.getName());
                 }
-                if(user.getBirthtDay()!=null){
-                    e.get().setBirthtDay(user.getBirthtDay());
-                }
-                if(user.getMonthBirthtDay()!=null){
-                    e.get().setMonthBirthtDay(user.getMonthBirthtDay());
-                }
+//                if(user.getBirthtDay()!=null){
+//                    e.get().setBirthtDay(user.getBirthtDay());
+//                }
+//                if(user.getMonthBirthtDay()!=null){
+//                    e.get().setMonthBirthtDay(user.getMonthBirthtDay());
+//                }
                 if(user.getAddress()!=null){
                     e.get().setAddress(user.getAddress());
                 }

@@ -45,12 +45,21 @@ function jqueryGET(url, funcion) {
 
 let checkUser = function(rta) {
     if (rta.id == null) {
-        alert("Email y/o password inválidos");
+            alert("Email y/o password inválidos");
 
-    } else {
-        alert("¡Bienvenido! "+rta.name);
-        window.location.href = "usuarios.html";
-    }
+        } else {
+            alert("¡Bienvenid@! "+rta.name);
+            localStorage.setItem("idUser", rta.id);
+            if(rta.type == "ADM"){ //Adminstrador
+                location.href = "../usuarios1.html";
+            }else if(rta.type == "COORD"){ //Coordinador
+                location.href = "../order2.html";
+            }else if(rta.type == "ASE"){ //Asesor
+                location.href = "../order1.html";
+            }else{
+                //location.href = "../order1.html";
+            }
+        }
 }
 
 $("#login").click(function () {
@@ -539,3 +548,8 @@ window.onload = consultarInventario();
 //     var idUser = localStorage.getItem('idUser');
 //     console.log(isUser);
 // })
+
+$("#cerrarSesion").click(function(){
+    localStorage.clear();
+    location.href = "../index.html";
+});

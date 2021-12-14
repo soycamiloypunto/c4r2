@@ -1,5 +1,6 @@
 package com.sergioarboleda.c4r2.repository;
 
+import com.sergioarboleda.c4r2.entity.Order;
 import com.sergioarboleda.c4r2.repository.crud.ClotheCrudRepository;
 import com.sergioarboleda.c4r2.entity.Clothe;
 import java.util.List;
@@ -35,5 +36,14 @@ public class ClotheRepository {
     
     public void delete(String id) {
         clotheCrudRepository.deleteById(id);
+    }
+
+    //Customs
+    public List<Clothe> findByDescription(String description) {
+        return clotheCrudRepository.findByDescriptionContainingIgnoreCase(description);
+    }
+
+    public List<Clothe> findByPrice(Double price) {
+        return clotheCrudRepository.findByPrice(price);
     }
 }

@@ -5,6 +5,7 @@
 package com.sergioarboleda.c4r2.service;
 
 import com.sergioarboleda.c4r2.entity.Clothe;
+import com.sergioarboleda.c4r2.entity.Order;
 import com.sergioarboleda.c4r2.repository.ClotheRepository;
 import java.util.List;
 import java.util.Optional;
@@ -82,4 +83,10 @@ public class ClotheService {
     
     
     //CUSTOMS
+    public List<Clothe> findByDescription(String description) {
+        return clotheRepository.findByDescription(description);
+    }
+    public List<Clothe> findByPrice(Double price) {
+        return clotheRepository.findByPrice(price);
+    }
 }

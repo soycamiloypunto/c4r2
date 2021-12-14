@@ -71,4 +71,9 @@ public class UserController {
             @PathVariable("email") String email, @PathVariable("password") String password){
         return userService.getEmailAndPassword(email, password);
     }
+    @GetMapping("/birthday/{monthBirthtDay}")
+    public List<User> getBymonthBirthtDay(@PathVariable("monthBirthtDay") String monthBirthtDay){
+        return userService.getBymonthBirthtDay(monthBirthtDay);
+    }
+
 }

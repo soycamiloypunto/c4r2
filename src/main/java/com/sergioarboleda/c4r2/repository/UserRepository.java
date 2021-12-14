@@ -46,4 +46,9 @@ public class UserRepository {
         return userCrudRepository.findByEmailAndPassword(email, password);
         
     }
+
+    public List<User> findBymonthBirthtDay(String monthBirthtDay){
+        return userCrudRepository.findBymonthBirthtDay(monthBirthtDay);
+
+    }
 }

@@ -16,4 +16,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface UserCrudRepository extends MongoRepository<User, Integer> {
     public List<User> findByEmail(String email);
     public Optional<Object> findByEmailAndPassword (String email, String password);
+    public List<User> findBymonthBirthtDay(String monthBirthtDay);
 }

@@ -131,5 +131,9 @@ public class UserService {
         
         
     }
+
+    public List<User> getBymonthBirthtDay(String monthBirthtDay){
+        return userRepository.findBymonthBirthtDay(monthBirthtDay);
+    }
     
 }

@@ -59,4 +59,18 @@ public class ClotheController {
     public boolean delete(@PathVariable String id) {
         return clotheService.deleteClothe(id);
     }
+
+    //CUSTOMS
+    @GetMapping("/description/{description}")
+    public List<Clothe> findByDescription(@PathVariable String description) {
+        return clotheService.findByDescription(description);
+    }
+
+    @GetMapping("/price/{price}")
+    public List<Clothe> findByDescription(@PathVariable Double price) {
+        return clotheService.findByPrice(price);
+    }
+
+
+
 }

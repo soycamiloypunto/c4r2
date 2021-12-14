@@ -106,10 +106,12 @@ public class OrderService {
         Date dateFormat = new Date();
         try{
             dateFormat= formato.parse(date);
+            System.out.println("Fecha Parseada: "+dateFormat+" Fecha sin Parsear: "+date);
 
         }catch(ParseException e){
             e.printStackTrace();
         }
+        System.out.println("Fecha Parseada que va a crud: "+dateFormat+" idSales: "+idSales);
         return orderRepository.findByRegisterDate(dateFormat, idSales);
     }
 }

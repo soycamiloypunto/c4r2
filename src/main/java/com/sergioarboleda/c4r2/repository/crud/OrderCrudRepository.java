@@ -36,6 +36,6 @@ public interface OrderCrudRepository extends MongoRepository<Order, Integer> {
     @Query("{'salesMan.id': ?0}")
     List<Order> findBySalesMan(final Integer id);
 
-    @Query("{registerDay: ?0, 'salesMan.id': ?1}")
+    //@Query("{registerDay: ?0, 'salesMan.id': ?1}")
     List<Order> findByRegisterDay(final Date registerDay, Integer id);
 }
